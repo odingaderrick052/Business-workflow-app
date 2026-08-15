@@ -63,8 +63,24 @@
 
 <script>
   function addCustomer() {
-    alert("New Customer button was clicked!");
+    // Get the table body
+    let table = document.querySelector("tbody");
+
+    // Create a new row
+    let newRow = document.createElement("tr");
+
+    // Add cells with sample data
+    newRow.innerHTML = `
+      <td>New Customer</td>
+      <td>New Request</td>
+      <td>Pending</td>
+      <td>2026-08-16</td>
+    `;
+
+    // Add the new row to the table
+    table.appendChild(newRow);
   }
+</script>
 </script>
 
   <h2>Recent Requests</h2>
