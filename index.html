@@ -73,24 +73,25 @@ const supabaseClient = supabase.createClient(
   <button onclick="addCustomer()">+ New Customer</button>
 
 <script>
-  function addCustomer() {
-    // Get the table body
-    let table = document.querySelector("tbody");
+async function addCustomer() {
+  const { data, error } = await supabaseClient
+    .from("customers")
+    .insert([
+      {
+        name: "New Customer"
+      }
+    ])
+    .select();
 
-    // Create a new row
-    let newRow = document.createElement("tr");
-
-    // Add cells with sample data
-    newRow.innerHTML = `
-      <td>New Customer</td>
-      <td>New Request</td>
-      <td>Pending</td>
-      <td>2026-08-16</td>
-    `;
-
-    // Add the new row to the table
-    table.appendChild(newRow);
+  if (error) {
+    console.error("Error adding customer:", error);
+    alert("Customer could not be added.");
+    return;
   }
+
+  alert("Customer added successfully!");
+  console.log(data);
+}
 </script>
 </script>
 
